@@ -19,6 +19,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.liebersonsantos.training.newsappcompose.presentation.common.NewButton
 import com.liebersonsantos.training.newsappcompose.presentation.common.NewsTextButton
 import com.liebersonsantos.training.newsappcompose.presentation.onboarding.Dimens.MediumPadding2
 import com.liebersonsantos.training.newsappcompose.presentation.onboarding.components.OnBoardingPage
@@ -76,7 +77,7 @@ fun OnBoardingScreen() {
                         })
                 }
 
-                NewsTextButton(
+                NewButton(
                     text = buttonState.value[1],
                     onClick = {
                         scope.launch {
