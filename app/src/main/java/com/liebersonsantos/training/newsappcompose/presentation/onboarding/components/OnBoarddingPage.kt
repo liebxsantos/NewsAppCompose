@@ -18,8 +18,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.liebersonsantos.training.newsappcompose.R
-import com.liebersonsantos.training.newsappcompose.presentation.onboarding.Dimens.MediumPadding1
-import com.liebersonsantos.training.newsappcompose.presentation.onboarding.Dimens.MediumPadding2
+import com.liebersonsantos.training.newsappcompose.presentation.Dimens.MediumPadding1
+import com.liebersonsantos.training.newsappcompose.presentation.Dimens.MediumPadding2
 import com.liebersonsantos.training.newsappcompose.presentation.onboarding.Page
 import com.liebersonsantos.training.newsappcompose.ui.theme.NewsAppComposeTheme
 

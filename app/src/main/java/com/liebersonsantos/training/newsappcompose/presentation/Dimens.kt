@@ -1,4 +1,4 @@
-package com.liebersonsantos.training.newsappcompose.presentation.onboarding
+package com.liebersonsantos.training.newsappcompose.presentation
 
 import androidx.compose.ui.unit.dp
 
