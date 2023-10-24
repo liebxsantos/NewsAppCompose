@@ -3,9 +3,9 @@ package com.liebersonsantos.training.newsappcompose.di
 import android.app.Application
 import com.liebersonsantos.training.newsappcompose.data.manager.LocalUserManagerImpl
 import com.liebersonsantos.training.newsappcompose.domain.manager.LocalUserManager
-import com.liebersonsantos.training.newsappcompose.domain.usecase.AppEntryUseCase
-import com.liebersonsantos.training.newsappcompose.domain.usecase.ReadAppEntry
-import com.liebersonsantos.training.newsappcompose.domain.usecase.SaveAppEntry
+import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.AppEntryUseCase
+import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.ReadAppEntry
+import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.SaveAppEntry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

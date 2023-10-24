@@ -1,4 +1,4 @@
-package com.liebersonsantos.training.newsappcompose.domain.usecase
+package com.liebersonsantos.training.newsappcompose.domain.usecase.appentry
 
 data class AppEntryUseCase(
     val readAppEntry: ReadAppEntry,

@@ -1,4 +1,4 @@
-package com.liebersonsantos.training.newsappcompose.domain.usecase
+package com.liebersonsantos.training.newsappcompose.domain.usecase.appentry
 
 import com.liebersonsantos.training.newsappcompose.domain.manager.LocalUserManager
 import kotlinx.coroutines.flow.Flow
