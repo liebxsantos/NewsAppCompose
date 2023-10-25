@@ -1,12 +1,14 @@
 package com.liebersonsantos.training.newsappcompose.presentation.navgraph
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.liebersonsantos.training.newsappcompose.presentation.home.HomeScreen
+import com.liebersonsantos.training.newsappcompose.presentation.home.HomeViewModel
 import com.liebersonsantos.training.newsappcompose.presentation.onboarding.OnBoardingScreen
 import com.liebersonsantos.training.newsappcompose.presentation.onboarding.OnBoardingViewModel
 
@@ -32,7 +34,9 @@ fun NavGraph(startDestination: String) {
             startDestination = Route.NewsNavigationScreen.route
         ) {
             composable(route = Route.NewsNavigationScreen.route) {
-                Text(text = "News Navigator Screen")
+                val viewModel: HomeViewModel = hiltViewModel()
+                val articles = viewModel.news.collectAsLazyPagingItems()
+                HomeScreen(articles = articles, navigate = {})
             }
         }
     }
