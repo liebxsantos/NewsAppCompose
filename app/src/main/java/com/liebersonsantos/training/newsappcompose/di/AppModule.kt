@@ -12,6 +12,7 @@ import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.ReadA
 import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.SaveAppEntry
 import com.liebersonsantos.training.newsappcompose.domain.usecase.news.GetNews
 import com.liebersonsantos.training.newsappcompose.domain.usecase.news.NewsUseCase
+import com.liebersonsantos.training.newsappcompose.domain.usecase.news.SearchNews
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -56,7 +57,8 @@ object AppModule {
     @Singleton
     fun provideNewsUseCase(newsRepository: NewsRepository): NewsUseCase {
         return NewsUseCase(
-            getNews = GetNews(newsRepository)
+            getNews = GetNews(newsRepository),
+            searchNews = SearchNews(newsRepository)
         )
     }
 }

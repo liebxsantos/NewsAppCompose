@@ -6,8 +6,9 @@ import com.liebersonsantos.training.newsappcompose.BuildConfig
 import com.liebersonsantos.training.newsappcompose.data.remote.dto.NewsApi
 import com.liebersonsantos.training.newsappcompose.domain.model.Article
 
-class NewsPagingSource(
+class SearchNewsPagingSource(
     private val newsApi: NewsApi,
+    private val searchQuery: String,
     private val sources: String
 ) : PagingSource<Int, Article>() {
     private var totalNewsCount = 0
@@ -22,7 +23,12 @@ class NewsPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val page = params.key ?: 1
         return try {
-            val newsResponse = newsApi.getNews(sources = sources, page = page, BuildConfig.PRIVATE_KEY)
+            val newsResponse = newsApi.searchNews(
+                searchQuery = searchQuery,
+                sources = sources,
+                page = page,
+                BuildConfig.PRIVATE_KEY
+            )
             totalNewsCount += newsResponse.articles.size
             val articles = newsResponse.articles.distinctBy { it.title } //Remove duplicates
 

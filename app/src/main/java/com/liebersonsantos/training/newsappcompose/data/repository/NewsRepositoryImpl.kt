@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.liebersonsantos.training.newsappcompose.data.remote.NewsPagingSource
+import com.liebersonsantos.training.newsappcompose.data.remote.SearchNewsPagingSource
 import com.liebersonsantos.training.newsappcompose.data.remote.dto.NewsApi
 import com.liebersonsantos.training.newsappcompose.domain.model.Article
 import com.liebersonsantos.training.newsappcompose.domain.repository.NewsRepository
@@ -23,6 +24,15 @@ class NewsRepositoryImpl(private val newsApi: NewsApi): NewsRepository {
     }
 
     override fun searchNews(searchQuery: String, sources: List<String>): Flow<PagingData<Article>> {
-        TODO("Not yet implemented")
+        return Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchNewsPagingSource(
+                   searchQuery = searchQuery ,
+                    newsApi = newsApi,
+                    sources = sources.joinToString(separator = ",")
+                )
+            }
+        ).flow
     }
 }
