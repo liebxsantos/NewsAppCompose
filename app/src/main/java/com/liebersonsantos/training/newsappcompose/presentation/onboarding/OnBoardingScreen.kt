@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
@@ -19,12 +20,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.liebersonsantos.training.newsappcompose.presentation.Dimens.MediumPadding2
 import com.liebersonsantos.training.newsappcompose.presentation.common.NewButton
 import com.liebersonsantos.training.newsappcompose.presentation.common.NewsTextButton
-import com.liebersonsantos.training.newsappcompose.presentation.Dimens.MediumPadding2
 import com.liebersonsantos.training.newsappcompose.presentation.onboarding.components.OnBoardingPage
 import com.liebersonsantos.training.newsappcompose.presentation.onboarding.components.PageIndicator
 import kotlinx.coroutines.launch
+
+const val FRACTION = 0.5f
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -59,13 +62,7 @@ fun OnBoardingScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            PageIndicator(
-                modifier = Modifier.width(52.dp),
-                pageSize = pages.size,
-                selectedPage = pagerState.currentPage
-            )
-
-
+            PageIndicator(pagerState)
             Row(verticalAlignment = Alignment.CenterVertically) {
                 val scope = rememberCoroutineScope()
 
@@ -76,7 +73,8 @@ fun OnBoardingScreen(
                             scope.launch {
                                 pagerState.animateScrollToPage(page = pagerState.currentPage - 1)
                             }
-                        })
+                        }
+                    )
                 }
 
                 NewButton(
@@ -89,11 +87,21 @@ fun OnBoardingScreen(
                                 pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
                             }
                         }
-                    })
-
+                    }
+                )
             }
         }
 
-        Spacer(modifier = Modifier.weight(0.5f))
+        Spacer(modifier = Modifier.weight(FRACTION))
     }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun PageIndicator(pagerState: PagerState) {
+    PageIndicator(
+        modifier = Modifier.width(52.dp),
+        pageSize = pages.size,
+        selectedPage = pagerState.currentPage
+    )
 }

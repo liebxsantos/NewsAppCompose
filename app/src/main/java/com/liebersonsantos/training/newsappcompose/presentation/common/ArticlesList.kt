@@ -13,9 +13,10 @@ import com.liebersonsantos.training.newsappcompose.domain.model.Article
 import com.liebersonsantos.training.newsappcompose.presentation.Dimens.ExtraSmallPadding2
 import com.liebersonsantos.training.newsappcompose.presentation.Dimens.MediumPadding1
 
+const val REPEAT_TIME = 10
+
 @Composable
 fun ArticlesList(
-    modifier: Modifier = Modifier,
     articles: LazyPagingItems<Article>,
     onClick: (Article) -> Unit
 ) {
@@ -66,7 +67,7 @@ fun handlerPagingResult(articles: LazyPagingItems<Article>): Boolean {
 @Composable
 private fun ShimmerEffect() {
     Column(verticalArrangement = Arrangement.spacedBy(MediumPadding1)) {
-        repeat(10) {
+        repeat(REPEAT_TIME) {
 
         }
     }

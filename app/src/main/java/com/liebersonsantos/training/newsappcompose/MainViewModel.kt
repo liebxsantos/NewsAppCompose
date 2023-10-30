@@ -13,9 +13,11 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
+const val DELAY = 300L
+
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val appEntryUseCase: AppEntryUseCase
+    appEntryUseCase: AppEntryUseCase
 ): ViewModel() {
 
     var splashCondition by mutableStateOf(true)
@@ -32,7 +34,7 @@ class MainViewModel @Inject constructor(
                 Route.AppStartNavigation.route
             }
 
-            delay(300)
+            delay(DELAY)
             splashCondition = false
         }.launchIn(viewModelScope)
     }

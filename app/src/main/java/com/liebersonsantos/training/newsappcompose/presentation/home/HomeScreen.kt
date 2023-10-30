@@ -29,12 +29,14 @@ import com.liebersonsantos.training.newsappcompose.presentation.common.ArticlesL
 import com.liebersonsantos.training.newsappcompose.presentation.common.SearchBar
 import com.liebersonsantos.training.newsappcompose.presentation.navgraph.Route
 
+const val COUNT = 10
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
     val titles by remember {
         derivedStateOf {
-            if (articles.itemCount > 10) {
+            if (articles.itemCount > COUNT) {
                 articles.itemSnapshotList.items
                     .slice(IntRange(start = 0, endInclusive = 9))
                     .joinToString(separator = " \uD83d\uDFE5 ") { it.title }
@@ -90,9 +92,8 @@ fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
         Spacer(modifier = Modifier.height(MediumPadding1))
 
         ArticlesList(
-            modifier = Modifier.padding(MediumPadding1),
-            articles = articles,
-            onClick = { navigate(Route.DetailScreen.route) })
+            articles = articles
+        ) { navigate(Route.DetailScreen.route) }
 
     }
 }

@@ -42,7 +42,7 @@ fun SearchScreen(
 
         state.articles?.let {
             val articles = it.collectAsLazyPagingItems()
-            ArticlesList(articles = articles, onClick = { navigate(Route.DetailScreen.route) })
+            ArticlesList(articles = articles) { navigate(Route.DetailScreen.route) }
         }
     }
 

@@ -29,10 +29,14 @@ import com.liebersonsantos.training.newsappcompose.presentation.Dimens
 import com.liebersonsantos.training.newsappcompose.presentation.Dimens.MediumPadding1
 import com.liebersonsantos.training.newsappcompose.ui.theme.NewsAppComposeTheme
 
+const val FRACTION = 0.5f
+
 fun Modifier.shimmerEffect() = composed {
     val transition = rememberInfiniteTransition()
     val alpha = transition.animateFloat(
-        initialValue = 0.2f, targetValue = 0.9f, animationSpec = infiniteRepeatable(
+        initialValue = 0.2f,
+        targetValue = 0.9f,
+        animationSpec = infiniteRepeatable(
             animation = tween(durationMillis = 1000),
             repeatMode = RepeatMode.Reverse
         )
@@ -69,7 +73,7 @@ fun ArticleCardShimmerEffect(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(0.5f)
+                        .fillMaxWidth(FRACTION)
                         .height(15.dp)
                         .padding(horizontal = MediumPadding1)
                         .shimmerEffect()

@@ -18,7 +18,8 @@ fun NewButton(
     onClick: () -> Unit
 ) {
     Button(
-        onClick = onClick, colors = ButtonDefaults.buttonColors(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = Color.White
         ),
@@ -43,5 +44,4 @@ fun NewsTextButton(
             color = WhiteGray
         )
     }
-
 }

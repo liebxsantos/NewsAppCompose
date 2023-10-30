@@ -30,7 +30,6 @@ fun PageIndicator(
                     .clip(CircleShape)
                     .background(color = if (page == selectedPage) selectedColor else unselectedColor)
             ) {
-
             }
         }
     }

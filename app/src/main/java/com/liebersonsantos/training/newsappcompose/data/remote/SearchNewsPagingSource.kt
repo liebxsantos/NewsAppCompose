@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.liebersonsantos.training.newsappcompose.BuildConfig
 import com.liebersonsantos.training.newsappcompose.data.remote.dto.NewsApi
 import com.liebersonsantos.training.newsappcompose.domain.model.Article
+import java.io.IOException
 
 class SearchNewsPagingSource(
     private val newsApi: NewsApi,
@@ -37,8 +38,7 @@ class SearchNewsPagingSource(
                 nextKey = if (totalNewsCount == newsResponse.totalResults) null else page + 1,
                 prevKey = null
             )
-        } catch (e: Exception) {
-            e.printStackTrace()
+        } catch (e: IOException) {
             LoadResult.Error(
                 throwable = e
             )
