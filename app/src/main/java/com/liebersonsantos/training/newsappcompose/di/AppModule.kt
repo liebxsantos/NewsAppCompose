@@ -14,9 +14,12 @@ import com.liebersonsantos.training.newsappcompose.domain.repository.NewsReposit
 import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.AppEntryUseCase
 import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.ReadAppEntry
 import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.SaveAppEntry
+import com.liebersonsantos.training.newsappcompose.domain.usecase.news.DeleteArticleUseCase
 import com.liebersonsantos.training.newsappcompose.domain.usecase.news.GetNews
 import com.liebersonsantos.training.newsappcompose.domain.usecase.news.NewsUseCase
 import com.liebersonsantos.training.newsappcompose.domain.usecase.news.SearchNews
+import com.liebersonsantos.training.newsappcompose.domain.usecase.news.SelectArticleUseCase
+import com.liebersonsantos.training.newsappcompose.domain.usecase.news.UpsertUseCase
 import com.liebersonsantos.training.newsappcompose.util.Constants.NEWS_DB
 import dagger.Module
 import dagger.Provides
@@ -60,10 +63,13 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsUseCase(newsRepository: NewsRepository): NewsUseCase {
+    fun provideNewsUseCase(newsRepository: NewsRepository, dao: NewsDao): NewsUseCase {
         return NewsUseCase(
             getNews = GetNews(newsRepository),
-            searchNews = SearchNews(newsRepository)
+            searchNews = SearchNews(newsRepository),
+            upsertUseCase = UpsertUseCase(dao),
+            deleteArticleUseCase = DeleteArticleUseCase(dao),
+            selectArticleUseCase = SelectArticleUseCase(dao)
         )
     }
 

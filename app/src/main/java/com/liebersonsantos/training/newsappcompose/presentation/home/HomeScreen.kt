@@ -33,7 +33,10 @@ const val COUNT = 10
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(articles: LazyPagingItems<Article>, navigate: (String) -> Unit) {
+fun HomeScreen(
+    articles: LazyPagingItems<Article>,
+    navigate: (String) -> Unit
+) {
     val titles by remember {
         derivedStateOf {
             if (articles.itemCount > COUNT) {
