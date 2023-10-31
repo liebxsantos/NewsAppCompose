@@ -1,7 +1,11 @@
 package com.liebersonsantos.training.newsappcompose.di
 
 import android.app.Application
+import androidx.room.Room
 import com.liebersonsantos.training.newsappcompose.BuildConfig
+import com.liebersonsantos.training.newsappcompose.data.local.NewsDao
+import com.liebersonsantos.training.newsappcompose.data.local.NewsDataBase
+import com.liebersonsantos.training.newsappcompose.data.local.NewsTypeConverter
 import com.liebersonsantos.training.newsappcompose.data.manager.LocalUserManagerImpl
 import com.liebersonsantos.training.newsappcompose.data.remote.dto.NewsApi
 import com.liebersonsantos.training.newsappcompose.data.repository.NewsRepositoryImpl
@@ -13,6 +17,7 @@ import com.liebersonsantos.training.newsappcompose.domain.usecase.appentry.SaveA
 import com.liebersonsantos.training.newsappcompose.domain.usecase.news.GetNews
 import com.liebersonsantos.training.newsappcompose.domain.usecase.news.NewsUseCase
 import com.liebersonsantos.training.newsappcompose.domain.usecase.news.SearchNews
+import com.liebersonsantos.training.newsappcompose.util.Constants.NEWS_DB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -61,4 +66,20 @@ object AppModule {
             searchNews = SearchNews(newsRepository)
         )
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsDataBase(application: Application): NewsDataBase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = NewsDataBase::class.java,
+            name = NEWS_DB
+        ).addTypeConverter(NewsTypeConverter())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewDao(newsDb: NewsDataBase): NewsDao = newsDb.newsDao
 }
