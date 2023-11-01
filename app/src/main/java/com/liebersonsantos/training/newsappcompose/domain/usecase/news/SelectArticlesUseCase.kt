@@ -2,11 +2,12 @@ package com.liebersonsantos.training.newsappcompose.domain.usecase.news
 
 import com.liebersonsantos.training.newsappcompose.domain.model.Article
 import com.liebersonsantos.training.newsappcompose.domain.repository.NewsRepository
+import kotlinx.coroutines.flow.Flow
 
-class UpsertUseCase(
+class SelectArticlesUseCase(
     private val repository: NewsRepository
 ) {
-    suspend operator fun invoke(article: Article) {
-        repository.upsertArticle(article)
+    operator fun invoke(): Flow<List<Article>> {
+       return repository.selectArticles()
     }
 }

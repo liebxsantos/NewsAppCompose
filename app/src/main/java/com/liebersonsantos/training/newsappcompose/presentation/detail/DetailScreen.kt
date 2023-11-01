@@ -114,7 +114,7 @@ private fun DetailTopBar(
                 }
             }
         },
-        onBookmarkClick = { event(DetailEvent.SaveArticle) },
+        onBookmarkClick = { event(DetailEvent.UpsertDeleteArticle(article)) },
         onBackClick = {
             navigationUP()
         })

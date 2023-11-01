@@ -27,15 +27,14 @@ import com.liebersonsantos.training.newsappcompose.domain.model.Article
 import com.liebersonsantos.training.newsappcompose.presentation.Dimens.MediumPadding1
 import com.liebersonsantos.training.newsappcompose.presentation.common.ArticlesList
 import com.liebersonsantos.training.newsappcompose.presentation.common.SearchBar
-import com.liebersonsantos.training.newsappcompose.presentation.navgraph.Route
 
 const val COUNT = 10
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     articles: LazyPagingItems<Article>,
-    navigate: (String) -> Unit
+    navigateToSearch: () -> Unit,
+    navigateToDetails: (Article) -> Unit
 ) {
     val titles by remember {
         derivedStateOf {
@@ -73,7 +72,7 @@ fun HomeScreen(
             readOnly = true,
             onValueChange = {},
             onClick = {
-                navigate(Route.SearchScreen.route)
+                navigateToSearch()
             },
             onSearch = {
 
@@ -96,7 +95,8 @@ fun HomeScreen(
 
         ArticlesList(
             articles = articles
-        ) { navigate(Route.DetailScreen.route) }
-
+        ) {
+            navigateToDetails(it)
+        }
     }
 }

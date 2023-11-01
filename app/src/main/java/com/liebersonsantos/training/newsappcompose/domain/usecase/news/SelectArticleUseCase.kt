@@ -1,13 +1,12 @@
 package com.liebersonsantos.training.newsappcompose.domain.usecase.news
 
-import com.liebersonsantos.training.newsappcompose.data.local.NewsDao
 import com.liebersonsantos.training.newsappcompose.domain.model.Article
-import kotlinx.coroutines.flow.Flow
+import com.liebersonsantos.training.newsappcompose.domain.repository.NewsRepository
 
 class SelectArticleUseCase(
-    private val dao: NewsDao
+    private val repository: NewsRepository
 ) {
-    operator fun invoke(): Flow<List<Article>> {
-       return dao.getArticles()
+    suspend operator fun invoke(url: String): Article? {
+        return repository.selectArticle(url)
     }
 }
